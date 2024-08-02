@@ -5,28 +5,33 @@
 │   ├── about
 │   │   ├── layout.tsx
 │   │   └── page.tsx
-│   ├── blog
-│   │   ├── layout.tsx
-│   │   └── page.tsx
-│   ├── docs
-│   │   ├── layout.tsx
+│   ├── app
 │   │   └── page.tsx
 │   ├── error.tsx
 │   ├── layout.tsx
-│   ├── page.tsx
-│   ├── pricing
-│   │   ├── layout.tsx
+│   ├── login
 │   │   └── page.tsx
-│   └── providers.tsx
+│   ├── page.tsx
+│   ├── providers.tsx
+│   └── signup
+│       └── page.tsx
 ├── components
 │   ├── counter.tsx
+│   ├── icons
+│   │   └── firm.tsx
 │   ├── icons.tsx
 │   ├── navbar.tsx
 │   ├── primitives.ts
+│   ├── sidebar-items.tsx
+│   ├── sidebar.tsx
+│   ├── team-avatar.tsx
 │   └── theme-switch.tsx
 ├── config
 │   ├── fonts.ts
 │   └── site.ts
+├── lib
+│   ├── supabase.ts
+│   └── utils.ts
 ├── next-env.d.ts
 ├── next.config.js
 ├── package.json
@@ -34,6 +39,8 @@
 ├── project_structure.txt
 ├── public
 │   ├── favicon.ico
+│   ├── images
+│   │   └── logo.png
 │   ├── next.svg
 │   └── vercel.svg
 ├── styles
@@ -44,4 +51,4 @@
 │   └── index.ts
 └── yarn.lock
 
-11 directories, 34 files
+14 directories, 38 files

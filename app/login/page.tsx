@@ -1,7 +1,7 @@
 // app/login/page.tsx
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button, Input, Checkbox, Link, Divider } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
@@ -15,21 +15,36 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
+  useEffect(() => {
+    const checkUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        router.push('/app');
+      }
+    };
+    checkUser();
+  }, [router]);
+
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
       if (error) throw error;
       
-      // Use replace instead of push to avoid issues with back button
-      router.replace('/app');
-    } catch (error) {
+      if (data.user) {
+        console.log("Login successful, redirecting...");
+        router.push('/app');
+      } else {
+        setError("Login failed. Please try again.");
+      }
+    } catch (error: any) {
+      console.error("Login error:", error);
       setError(error.message);
     }
   };
@@ -41,7 +56,7 @@ export default function LoginPage() {
       });
 
       if (error) throw error;
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     }
   };
@@ -53,7 +68,7 @@ export default function LoginPage() {
       });
 
       if (error) throw error;
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     }
   };
@@ -71,8 +86,10 @@ export default function LoginPage() {
       {/* Brand Logo */}
       <div className="absolute right-10 top-10">
         <div className="flex items-center">
-          <FirmIcon className="text-white" size={40} />
-          <p className="font-medium text-white">FIRM</p>
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground">
+            <FirmIcon className="text-background" />
+          </div>
+          <p className="ml-2 font-medium text-white">TRAI</p>
         </div>
       </div>
 

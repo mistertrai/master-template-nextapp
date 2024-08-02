@@ -43,8 +43,10 @@ export default function SignUpPage() {
       {/* Brand Logo */}
       <div className="absolute right-10 top-10">
         <div className="flex items-center">
-          <FirmIcon className="text-white" size={40} />
-          <p className="font-medium text-white">FIRM</p>
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground">
+            <FirmIcon className="text-background" />
+          </div>
+          <p className="ml-2 font-medium text-white">TRAI</p>
         </div>
       </div>
 

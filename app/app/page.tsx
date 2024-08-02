@@ -1,7 +1,7 @@
 // app/app/page.tsx
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Avatar, Button, ScrollShadow, Spacer, Tooltip } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
@@ -16,6 +16,19 @@ import { supabase } from "@/lib/supabase";
 export default function AppPage() {
   const isCompact = useMediaQuery("(max-width: 768px)");
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        router.push('/login');
+      } else {
+        setIsLoading(false);
+      }
+    };
+    checkUser();
+  }, [router]);
 
   const handleLogout = async () => {
     try {
@@ -26,6 +39,10 @@ export default function AppPage() {
       console.error('Error logging out:', error.message);
     }
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>; // You can replace this with a loading spinner component
+  }
 
   return (
     <div className="flex h-screen w-full">
@@ -54,7 +71,7 @@ export default function AppPage() {
               "w-0 opacity-0": isCompact,
             })}
           >
-            FIRM
+            TRAI
           </span>
         </div>
         <Spacer y={8} />
@@ -154,3 +171,4 @@ export default function AppPage() {
     </div>
   );
 }
+
