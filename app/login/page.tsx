@@ -1,15 +1,62 @@
 // app/login/page.tsx
 "use client";
 
-import React from "react";
-import {Button, Input, Checkbox, Link, Divider} from "@nextui-org/react";
-import {Icon} from "@iconify/react";
-import {firmIcon} from "@/components/icons/firm";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Button, Input, Checkbox, Link, Divider } from "@nextui-org/react";
+import { Icon } from "@iconify/react";
+import { FirmIcon } from "@/components/icons/firm";
+import { supabase } from "@/lib/supabase";
 
 export default function LoginPage() {
-  const [isVisible, setIsVisible] = React.useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const toggleVisibility = () => setIsVisible(!isVisible);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) throw error;
+      
+      // Use replace instead of push to avoid issues with back button
+      router.replace('/app');
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+      });
+
+      if (error) throw error;
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleGithubLogin = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'github',
+      });
+
+      if (error) throw error;
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   return (
     <div
@@ -24,7 +71,7 @@ export default function LoginPage() {
       {/* Brand Logo */}
       <div className="absolute right-10 top-10">
         <div className="flex items-center">
-          <firmIcon className="text-white" size={40} />
+          <FirmIcon className="text-white" size={40} />
           <p className="font-medium text-white">FIRM</p>
         </div>
       </div>
@@ -42,12 +89,14 @@ export default function LoginPage() {
       {/* Login Form */}
       <div className="flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 pb-10 pt-6 shadow-small">
         <p className="pb-2 text-xl font-medium">Log In</p>
-        <form className="flex flex-col gap-3" onSubmit={(e) => e.preventDefault()}>
+        {error && <p className="text-red-500">{error}</p>}
+        <form className="flex flex-col gap-3" onSubmit={handleLogin}>
           <Input
             label="Email Address"
-            name="email"
             placeholder="Enter your email"
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             variant="bordered"
           />
           <Input
@@ -67,9 +116,10 @@ export default function LoginPage() {
               </button>
             }
             label="Password"
-            name="password"
             placeholder="Enter your password"
             type={isVisible ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             variant="bordered"
           />
           <div className="flex items-center justify-between px-1 py-2">
@@ -93,19 +143,21 @@ export default function LoginPage() {
           <Button
             startContent={<Icon icon="flat-color-icons:google" width={24} />}
             variant="bordered"
+            onClick={handleGoogleLogin}
           >
             Continue with Google
           </Button>
           <Button
             startContent={<Icon className="text-default-500" icon="fe:github" width={24} />}
             variant="bordered"
+            onClick={handleGithubLogin}
           >
             Continue with Github
           </Button>
         </div>
         <p className="text-center text-small">
           Need to create an account?&nbsp;
-          <Link href="#" size="sm">
+          <Link href="/signup" size="sm">
             Sign Up
           </Link>
         </p>

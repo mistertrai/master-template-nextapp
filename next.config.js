@@ -1,4 +1,11 @@
+// next.config.js
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
-
-module.exports = nextConfig
+const nextConfig = {
+    reactStrictMode: true,
+    transpilePackages: ['@iconify/react'],
+    experimental: {
+      appDir: true,
+    },
+  }
+  
+  module.exports = nextConfig
