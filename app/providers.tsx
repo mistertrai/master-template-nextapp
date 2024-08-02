@@ -1,4 +1,5 @@
 // app/providers.tsx
+// app/providers.tsx
 "use client";
 
 import * as React from "react";
@@ -9,7 +10,7 @@ import { ThemeProviderProps } from "next-themes/dist/types";
 
 export interface ProvidersProps {
   children: React.ReactNode;
-  themeProps?: ThemeProviderProps;
+  themeProps?: Omit<ThemeProviderProps, 'children'>;
 }
 
 export function Providers({ children, themeProps }: ProvidersProps) {
@@ -17,7 +18,9 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
   return (
     <NextUIProvider navigate={router.push}>
-      <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
+      <NextThemesProvider {...themeProps}>
+        {children}
+      </NextThemesProvider>
     </NextUIProvider>
   );
 }
