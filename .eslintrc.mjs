@@ -1,31 +1,31 @@
-{
-  "$schema": "https://json.schemastore.org/eslintrc.json",
-  "env": {
-    "browser": false,
-    "es2021": true,
-    "node": true
+export default {
+  env: {
+    browser: true,
+    es2021: true,
+    node: true
   },
-  "extends": [
+  extends: [
     "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "next/core-web-vitals"
   ],
-  "plugins": ["react", "unused-imports", "import", "@typescript-eslint", "jsx-a11y", "prettier"],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+  plugins: ["react", "unused-imports", "import", "@typescript-eslint", "jsx-a11y", "prettier"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
     },
-    "ecmaVersion": 12,
-    "sourceType": "module"
+    ecmaVersion: 12,
+    sourceType: "module"
   },
-  "settings": {
-    "react": {
-      "version": "detect"
+  settings: {
+    react: {
+      version: "detect"
     }
   },
-  "rules": {
+  rules: {
     "no-console": "warn",
     "react/prop-types": "off",
     "react/jsx-uses-react": "off",
@@ -40,15 +40,15 @@
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {
-        "args": "after-used",
-        "ignoreRestSiblings": false,
-        "argsIgnorePattern": "^_.*?$"
+        args: "after-used",
+        ignoreRestSiblings: false,
+        argsIgnorePattern: "^_.*?$"
       }
     ],
     "import/order": [
       "warn",
       {
-        "groups": [
+        groups: [
           "type",
           "builtin",
           "object",
@@ -58,11 +58,11 @@
           "sibling",
           "index"
         ],
-        "pathGroups": [
+        pathGroups: [
           {
-            "pattern": "~/**",
-            "group": "external",
-            "position": "after"
+            pattern: "~/**",
+            group: "external",
+            position: "after"
           }
         ],
         "newlines-between": "always"
@@ -72,21 +72,21 @@
     "react/jsx-sort-props": [
       "warn",
       {
-        "callbacksLast": true,
-        "shorthandFirst": true,
-        "noSortAlphabetically": false,
-        "reservedFirst": true
+        callbacksLast: true,
+        shorthandFirst: true,
+        noSortAlphabetically: false,
+        reservedFirst: true
       }
     ],
     "padding-line-between-statements": [
       "warn",
-      {"blankLine": "always", "prev": "*", "next": "return"},
-      {"blankLine": "always", "prev": ["const", "let", "var"], "next": "*"},
+      {blankLine: "always", prev: "*", next: "return"},
+      {blankLine: "always", prev: ["const", "let", "var"], next: "*"},
       {
-        "blankLine": "any",
-        "prev": ["const", "let", "var"],
-        "next": ["const", "let", "var"]
+        blankLine: "any",
+        prev: ["const", "let", "var"],
+        next: ["const", "let", "var"]
       }
     ]
   }
-}
+};
