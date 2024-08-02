@@ -1,4 +1,4 @@
-// components/sidebar.tsx
+// app/app/components/sidebar.tsx
 "use client";
 
 import {

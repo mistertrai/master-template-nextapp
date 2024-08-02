@@ -1,3 +1,4 @@
+// components/primitives.ts
 import { tv } from "tailwind-variants";
 
 export const title = tv({

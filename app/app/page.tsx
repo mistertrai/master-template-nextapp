@@ -36,7 +36,11 @@ export default function AppPage() {
       if (error) throw error;
       router.push('/login');
     } catch (error) {
-      console.error('Error logging out:', error.message);
+      if (error instanceof Error) {
+        console.error('Error logging out:', error.message);
+      } else {
+        console.error('An unexpected error occurred during logout');
+      }
     }
   };
 

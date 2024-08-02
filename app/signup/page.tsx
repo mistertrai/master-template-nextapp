@@ -3,8 +3,8 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import {Button, Input, Link, Divider} from "@nextui-org/react";
-import {Icon} from "@iconify/react";
+import { Button, Input, Link } from "@nextui-org/react";
+import { Icon } from "@iconify/react";
 import { FirmIcon } from "@/components/icons/firm";
 import { supabase } from "@/lib/supabase";
 
@@ -26,7 +26,11 @@ export default function SignUpPage() {
       
       router.push('/app'); // Redirect to app page after successful sign-up
     } catch (error) {
-      setError(error.message);
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('An unexpected error occurred');
+      }
     }
   };
 

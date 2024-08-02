@@ -1,3 +1,4 @@
+// components/navbar.tsx
 import {
   Navbar as NextUINavbar,
   NavbarContent,

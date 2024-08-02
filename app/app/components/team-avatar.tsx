@@ -1,4 +1,4 @@
-// components/team-avatar.tsx
+// app/app/components/team-avatar.tsx
 "use client";
 
 import type {AvatarProps} from "@nextui-org/react";

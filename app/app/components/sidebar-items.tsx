@@ -1,4 +1,4 @@
-// components/sidebar-items.tsx
+// app/app/components/sidebar-items.tsx
 import {Chip} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 

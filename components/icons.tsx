@@ -1,3 +1,4 @@
+// components/icon.tsx
 import * as React from "react";
 
 import { IconSvgProps } from "@/types";

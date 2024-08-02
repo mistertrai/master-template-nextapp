@@ -1,3 +1,4 @@
+// components/theme-switch.tsx
 "use client";
 
 import { FC } from "react";
