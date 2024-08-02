@@ -8,9 +8,9 @@ import { Icon } from "@iconify/react";
 import { useMediaQuery } from "usehooks-ts";
 
 import { FirmIcon } from "@/components/icons/firm";
-import { sectionItemsWithTeams } from "@/components/sidebar-items";
+import { sectionItemsWithTeams } from "@/app/app/components/sidebar-items";
 import { cn } from "@/lib/utils";
-import Sidebar from "@/components/sidebar";
+import Sidebar from "@/app/app/components/sidebar";
 import { supabase } from "@/lib/supabase";
 
 export default function AppPage() {

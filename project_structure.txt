@@ -6,6 +6,10 @@
 │   │   ├── layout.tsx
 │   │   └── page.tsx
 │   ├── app
+│   │   ├── components
+│   │   │   ├── sidebar-items.tsx
+│   │   │   ├── sidebar.tsx
+│   │   │   └── team-avatar.tsx
 │   │   └── page.tsx
 │   ├── error.tsx
 │   ├── layout.tsx
@@ -22,9 +26,6 @@
 │   ├── icons.tsx
 │   ├── navbar.tsx
 │   ├── primitives.ts
-│   ├── sidebar-items.tsx
-│   ├── sidebar.tsx
-│   ├── team-avatar.tsx
 │   └── theme-switch.tsx
 ├── config
 │   ├── fonts.ts
@@ -51,4 +52,4 @@
 │   └── index.ts
 └── yarn.lock
 
-14 directories, 38 files
+15 directories, 38 files
